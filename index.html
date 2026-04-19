@@ -339,7 +339,7 @@ function renderPipeline(deals) {
     var aeActuals = {};
     AE_TARGETS.forEach(function(ae) { aeActuals[ae.name] = 0; });
     q1Won.forEach(function(d) {
-        var owner = d.deal_owner || d.owner || '';
+        var owner = d. || d.owner || '';
         AE_TARGETS.forEach(function(ae) {
             if (owner.toLowerCase().indexOf(ae.name.toLowerCase()) !== -1) {
                 aeActuals[ae.name] = (aeActuals[ae.name]||0) + (parseFloat(d.amount)||0);
@@ -457,7 +457,7 @@ function loadAll() {
         document.getElementById(id).innerHTML = '<div class="section-loader"><div class="spinner"></div></div>';
     });
     Promise.all([
-        sbFetch('deals', 'select=record_id,deal_name,stage,amount,arr,region,won_date,closing_date,deal_type,next_step,deal_owner&order=created_at.desc'),
+        sbFetch('deals', 'select=record_id,deal_name,stage,amount,arr,region,won_date,closing_date,deal_type,next_step,&order=created_at.desc'),
         sbFetch('accounts', 'select=record_id,account_name,account_status,region,total_arr,account_last_touch,industry&account_status=not.is.null&order=account_last_touch.desc.nullslast'),
         sbFetch('email_intel_log', 'select=*&order=created_at.desc&limit=50'),
         sbFetch('meetings', 'select=record_id,title,company,meeting_date,ae_owner,bdr_owner,region&order=meeting_date.desc&limit=15')
